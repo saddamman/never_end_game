@@ -1,0 +1,82 @@
+.login-form{
+    text-align: center;
+    min-height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-repeat: no-repeat;
+
+}
+.login-inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+.login-inner form {
+    padding: 20px 20px;
+}
+
+
+.login-form .form-control {
+    height: calc(2em + 0.75rem + 2px);
+    padding: 0.775rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-form .form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color:#fff;
+  }
+  .login-form .form-control::-moz-placeholder { /* Firefox 19+ */
+    color:#fff;
+  }
+  .login-form .form-control:-ms-input-placeholder { /* IE 10+ */
+    color:#fff;
+  }
+  .login-form .form-control:-moz-placeholder { /* Firefox 18- */
+    color:#fff;
+  }
+  .login-form .btn-facebook{
+      background-color: #3b5998;
+      border: 0;
+  }
+  .login-form .btn-google{
+    background-color: #bb001b;
+    border: 0;
+}
+
+.login-form .forgot-password a{
+    color: #fff;
+}
+
+.devider span {
+    display: block;
+    margin: 10px 0;
+    color: #fff;
+}
+.devider span:before, .devider span:after  {
+    content: "";
+    display: block;
+    border-top: 1px solid #fff;
+    width: 45%;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: 1px;
+}
+
+.devider span:after{
+    left: auto;
+    right: 0;
+}

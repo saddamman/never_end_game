@@ -1,0 +1,15 @@
+.main-header .navbar{
+    background: #d9ecff;
+}
+.logo span {
+    max-width: 270px;
+    display: inline-block;
+    text-align: left;
+    font-weight: bold;
+}
+.main-header .navbar-nav li a{
+    color: #212529;
+}
+.main-header .navbar-nav li a.login-btn:hover {
+    color: #fff;
+}
