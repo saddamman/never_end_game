@@ -2,3 +2,7 @@
     max-width: 90px;
     margin: 10px auto;
 }
+
+.custom-profile-upload{
+    display: none !important;
+}

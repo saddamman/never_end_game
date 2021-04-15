@@ -2,13 +2,14 @@ import React from 'react';
 import './Header.css'
 import {Link} from  'react-router-dom'
 
-export const Header = () => {
+export const Header = (props) => {
+    
     return(
          <header className="main-header">
             <nav className="navbar navbar-expand-sm ">
             <div className="container-fluid">
                 <div className="logo d-flex justify-content-center align-items-center">
-                    <a className="navbar-brand" href="#"><img src={process.env.PUBLIC_URL + '/images/logo.png'} />  </a>
+                    <a className="navbar-brand" href="/home"><img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="En Logo"/>  </a>
                     <span>THE NEVER ENDING (WORD) GAME PRE-SIGN-UP TESTER OFFER</span>
                 </div>
               

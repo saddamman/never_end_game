@@ -1,65 +1,77 @@
 import React, { Component } from 'react';
 import './Login.css';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom'
 
 class Login extends Component {
     constructor(props){
-        super(props)   
-    }
-    state = {
-        email: '',
-        password: '',
-        formErrors: {email: '', password: ''},
-        emailValid: false,
-        passwordValid: false,
-        formValid: false
-      }
-    getUserDetials = () => {
-       const getEmail = this.state.email;
-       const getPass = this.state.passWord;
-        if((getEmail !== undefined  && getEmail !== null && getEmail !== '' && getEmail.length >3) && (getPass !== undefined  && getPass !== null && getPass !== '' && getPass.length >3) ){
-            console.log("Success")
-        }else{
-            alert("Please Enter valid email or password")
+        super(props)
+        this.state = {  
+            email: '',
+            password: ''
         }
-        // .warn(this.state)
+        
     }
-    componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-          .then(res => {
-            // const persons = res.data;
-            // this.setState({ persons });
-          })
-      }
+    
+   
+
+      submitFrom = (e) => {
+            
+            const {email, password, isLogin} = this.state
+            e.preventDefault() 
+            if((email !== undefined  && email !== null && email !== '' && email.length >3) && (password !== undefined  && password !== null && password !== '' && password.length >3) ){
+                this.setState({isLogin:true})  
+                axios.post("https://reqres.in/api/login", this.state)
+                .then(response => {
+                    localStorage.setItem("user", response.data.token)
+                    this.props.history.push("/")
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }else{
+                alert("Please Enter valid email or password")
+            }
+
+            
+            
+            console.log(email, password, isLogin)
+            
+        }
+        
+    
     
     
     render(){
+        let auth = localStorage.getItem("user")
+        
+        const {email, password} = this.state
         return(
             <section className="login-form" style={{
                 backgroundImage: `url('${process.env.PUBLIC_URL}/images/negameback.jpg')`
-              }}>
-                {/* <img src={process.env.PUBLIC_URL + '/images/banner.jpg'} className="img-fluid"/>   */}
+            }}>
+            {auth ? <Redirect to="/"> </Redirect> :  null }
+                  
                 <div className="login-inner ">
                     <div className="container h-100">
                         <div className="row align-items-center justify-content-center h-100">
                                 <div className="col-sm-8">
-                                    <img src={process.env.PUBLIC_URL + '/images/negamelogologin.png'} className="img-fluid"/> 
-                                <form>
+                                    <img src={process.env.PUBLIC_URL + '/images/negamelogologin.png'} className="img-fluid" alt="ne logo"/> 
+                                <form onSubmit={this.submitFrom}> 
                                     <h3 className="text-white mb-2"><b> Log in</b></h3>
                                     <div className="form-group">
-                                        <input type="email" className="form-control" placeholder="Enter email" onChange={(e) => {this.setState({email:e.target.value})}}/>
+                                        <input type="email" required className="form-control" name="email" value={email} placeholder="Enter email" onChange={(e) => {this.setState({[e.target.name]:e.target.value})}}/>
                                     </div>
 
                                     <div className="form-group">
-                                        <input type="password" className="form-control" placeholder="Enter password" onChange={(e) => {this.setState({passWord:e.target.value})}}/>
+                                        <input type="password" required className="form-control" name="password" value={password} placeholder="Enter password" onChange={(e) => {this.setState({[e.target.name]:e.target.value})}}/>
                                     </div>
                                     <p className="forgot-password text-right">
-                                         <a href="#">Forgot password?</a>
+                                         <a href="/home">Forgot password?</a>
                                     </p>
 
                                     <div className="form-group">
-                                        <button type="button" className="btn btn-primary btn-lg btn-block rounded-pill" onClick={() => {this.getUserDetials()}}>Login</button>
+                                        <button type="submit" className="btn btn-primary btn-lg btn-block rounded-pill">Login</button>
                                     </div>
 
                                     <div className="form-group devider position-relative">
